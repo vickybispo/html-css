@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabelas</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        table {
+            border-collapse: separate;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .centro {
+            text-align: center;
+        }
+
+        .esquerda {
+            text-align: left;
+        }
+
+        .inverso {
+            background-color: #494141;
+            color: white;
+        }
+
+        .realce {
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    <h1>Desafio 14</h1>
+    <table>
+        <tr class="inverso">
+            <th rowspan="2" scope="col">Área</th>
+            <th rowspan="2" scope="col">Disciplinas</th>
+            <th colspan="2" scope="colgroup">Notas</th>
+            <th rowspan="2" scope="col">Média</th>
+        </tr>
+        <tr class="inverso">
+           <th scope="col">Nota 1</th>
+           <th scope="col">Nota 2</th>
+        </tr>
+        <tr>
+            <th rowspan="4" scope="colgroup">Exatas</th>
+            <td class="centro">Matemática</td>
+            <td class="centro">Física</td>
+            <td class="centro">Química</td>
+            <td class="centro">Biologia</td>
+        </tr>
+        <tr>
+            <th>Média de Exatas</th>
+            <td>0.0</td>
+        </tr>
+        <tr>
+            <th>Humanas</th>
+            <td>História</td>
+            <td>Portugues</td>
+            <td>Geografia</td>
+            <td>Ingles</td>
+        </tr>
+        <tr>
+            <th>Média de Humanas</th>
+            <td>0.0</td>
+        </tr>
+    </table>
+</body>
+</html>
