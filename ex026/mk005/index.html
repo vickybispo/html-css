@@ -6,8 +6,9 @@
     <title>Media Query</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="estilos/media-query.css">
 </head>
-<body>
+<body onresize="mudouTamanho">
     <header>
        <h1>Mundo Tech: Tecnologia em pleno 2024</h1>
        <i id="burguer" class="material-icons" onclick="clickMenu()">menu</i>
@@ -41,6 +42,13 @@
         </article>
     </main>
     <script>
+            if (window.innerWidth >= 768) {
+                itens.style.display = 'block'
+            } else {
+                itens.style.display = 'none'
+            }
+    
+
         function clickMenu() {
             if (itens.style.display == 'block') {
                 itens.style.display = 'none'
@@ -48,6 +56,7 @@
                 itens.style.display = 'block'
             }
         }
+    </script>
     </script>
 </body>
 </html>
