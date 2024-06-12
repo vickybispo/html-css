@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Query</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <header>
        <h1>Mundo Tech: Tecnologia em pleno 2024</h1>
-    </header>
-    <menu>
+       <i id="burguer" class="material-icons" onclick="clickMenu()">menu</i>
+    <menu id="itens">
         <ul>
             <li><a href="#">Opção 1</a></li>
             <li><a href="#">Opção 2</a></li>
@@ -19,6 +20,7 @@
             <li><a href="#">Opção 5</a></li>
         </ul>
     </menu>
+</header>
     <main>
         <article>
            <h2>Como a Tecnologia Influencia nos dias de hoje</h2>
@@ -38,5 +40,14 @@
              </ul></p>
         </article>
     </main>
+    <script>
+        function clickMenu() {
+            if (itens.style.display == 'block') {
+                itens.style.display = 'none'
+            } else {
+                itens.style.display = 'block'
+            }
+        }
+    </script>
 </body>
 </html>
