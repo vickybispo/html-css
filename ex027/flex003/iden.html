@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defensor Imunológico</title>
+    <style>
+        #character {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            border-radius: 50%;
+        }
+
+        #virus {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            bottom: 100px;
+            right: 50px;
+            border-radius: 50%;
+            animation: moveVirus 2s infinite;
+        }
+
+        @keyframes moveVirus {
+            0% { right: 50px; }
+            50% { right: 150px; }
+            100% { right: 50px; }
+        }
+
+        #message {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        #healthBar {
+            width: 100%;
+            height: 20px;
+            background-color: lightgray;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        #health {
+            width: 100%;
+            height: 100%;
+            background-color: green;
+            position: absolute;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="character"></div>
+<div id="virus"></div>
+<p id="message">Escolha a ação correta para derrotar o vírus!</p>
+
+<div id="healthBar">
+    <div id="health"></div>
+</div>
+
+<div style="text-align: center;">
+    <div class="button" onclick="attackVirus('vaccine')">Tomar Vacina</div>
+    <div class="button" onclick="attackVirus('washHands')">Lavar as Mãos</div>
+    <div class="button" onclick="attackVirus('coverMouth')">Cobrir a Boca</div>
+</div>
+
+<script>
+    let character = document.getElementById('character');
+    let virus = document.getElementById('virus');
+    let message = document.getElementById('message');
+    let health = document.getElementById('health');
+
+    let virusTypes = [
+        {name: 'Gripe', correctAction: 'vaccine'},
+        {name: 'Gastroenterite', correctAction: 'washHands'},
+        {name: 'Resfriado', correctAction: 'coverMouth'}
+    ];
+
+    let currentVirus = virusTypes[Math.floor(Math.random() * virusTypes.length)];
+
+    function updateVirus() {
+        currentVirus = virusTypes[Math.floor(Math.random() * virusTypes.length)];
+        message.textContent = `Um ${currentVirus.name} apareceu! Escolha a ação correta!`;
+        virus.style.backgroundColor = 'red';
+        virus.style.animation = 'moveVirus 2s infinite';
+    }
+
+    function attackVirus(action) {
+        if (action === currentVirus.correctAction) {
+            virus.style.backgroundColor = 'green';
+            virus.style.animation = 'none';
+            message.textContent = `Você derrotou o ${currentVirus.name}!`;
+            setTimeout(updateVirus, 2000); // Muda para um novo vírus após 2 segundos
+        } else {
+            character.style.backgroundColor = 'red';
+            message.textContent = `Ação incorreta! O ${currentVirus.name} te atingiu!`;
+            reduceHealth();
+        }
+    }
+
+    function reduceHealth() {
+        let healthWidth = health.offsetWidth;
+        let newWidth = healthWidth - 30; // Reduz 30px da saúde
+        if (newWidth <= 0) {
+            newWidth = 0;
+            message.textContent = 'Você perdeu todas as vidas! Tente novamente.';
+            setTimeout(resetGame, 2000);
+        }
+        health.style.width = newWidth + 'px';
+        setTimeout(() => {
+            character.style.backgroundColor = 'lightblue'; // Reseta a cor do personagem
+        }, 500);
+    }
+
+    function resetGame() {
+        health.style.width = '100%';
+        updateVirus();
+        message.textContent = 'Escolha a ação correta para derrotar o vírus!';
+    }
+
+    updateVirus(); // Inicializa o jogo com um vírus aleatório
+</script>
+
+</body>
+</html>
